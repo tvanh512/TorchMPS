@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 import time
 import torch
-from torch import nn
 from torchmps import MPS
 from torchvision import transforms, datasets
+import numpy as np
+import itertools
+from torch import nn
 
 # Miscellaneous initialization
 torch.manual_seed(0)
 start_time = time.time()
 
 # MPS parameters
-bond_dim      = 20
+bond_dim      = 6
 adaptive_mode = False
 periodic_bc   = False
 
@@ -22,13 +24,40 @@ num_epochs = 20
 learn_rate = 1e-4
 l2_reg     = 0.
 
-# Initialize the MPS module
+
+dim = [28,28]
+out_dim=10
+# build a family of MPS:
+mps_list = nn.ModuleList()
+
+
+path = np.arange(np.prod(dim)).reshape(dim)
+path[range(1,dim[0],2),:] = path[range(1,dim[0],2),::-1]
 mps = MPS(input_dim=28**2, output_dim=10, bond_dim=bond_dim, 
-          adaptive_mode=adaptive_mode, periodic_bc=periodic_bc)
-sm = nn.Softmax()
+      adaptive_mode=adaptive_mode, periodic_bc=periodic_bc, path=path.ravel().tolist())
+mps_list.append(mps)
+
+mps = MPS(input_dim=28**2, output_dim=10, bond_dim=bond_dim, 
+      adaptive_mode=adaptive_mode, periodic_bc=periodic_bc, path=path[:,::-1].ravel().tolist())
+mps_list.append(mps)
+
+path = np.arange(np.prod(dim)).reshape(dim).T
+path[range(1,dim[0],2),:] = path[range(1,dim[0],2),::-1]
+mps = MPS(input_dim=28**2, output_dim=10, bond_dim=bond_dim, 
+      adaptive_mode=adaptive_mode, periodic_bc=periodic_bc, path=path.T.ravel().tolist())
+mps_list.append(mps)
+
+mps = MPS(input_dim=28**2, output_dim=10, bond_dim=bond_dim, 
+      adaptive_mode=adaptive_mode, periodic_bc=periodic_bc, path=path[:,::-1].ravel().tolist())
+mps_list.append(mps)
+
 # Set our loss function and optimizer
 loss_fun = torch.nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(mps.parameters(), lr=learn_rate, 
+params =  mps_list.parameters()
+#params = mps_list[0].parameters()
+#for p in mps.parameters():
+#    print(p)
+optimizer = torch.optim.Adam(params, lr=learn_rate, 
                              weight_decay=l2_reg)
 
 # Get the training and test sets
@@ -65,9 +94,15 @@ for epoch_num in range(1, num_epochs+1):
         inputs, labels = inputs.view([batch_size, 28**2]), labels.data
 
         # Call our MPS to get logit scores and predictions
-        scores = mps(inputs)
+        scores = None
+        for mps in mps_list:
+            if scores is not None:
+                scores += mps(inputs)
+            else:
+                scores = mps(inputs)
+        scores /= len(mps_list)
         _, preds = torch.max(scores, 1)
-        #print(preds)
+
         # Compute the loss and accuracy, add them to the running totals
         loss = loss_fun(scores, labels)
         with torch.no_grad():
@@ -79,7 +114,6 @@ for epoch_num in range(1, num_epochs+1):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        print(list(mps.parameters())[0][2,0:2,0:2,1])
 
     print(f"### Epoch {epoch_num} ###")
     print(f"Average loss:           {running_loss / num_batches['train']:.4f}")
@@ -93,7 +127,13 @@ for epoch_num in range(1, num_epochs+1):
             inputs, labels = inputs.view([batch_size, 28**2]), labels.data
 
             # Call our MPS to get logit scores and predictions
-            scores = mps(inputs)
+            scores = None
+            for mps in mps_list:
+                if scores is not None:
+                    scores += mps(inputs)
+                else:
+                    scores = mps(inputs)
+            scores /= len(mps_list)
             _, preds = torch.max(scores, 1)
             running_acc += torch.sum(preds == labels).item() / batch_size
 
