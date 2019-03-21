@@ -2,8 +2,14 @@
 __pycache__/
 
 # Slurm logs
-#slurm-*
+logs/slurm-*
 
 # MNIST data
 mnist/
+fashion_mnist/
 
+# Comet.ml
+.comet.config
+
+# Auto-generated batch script
+logs/batch_script.sh

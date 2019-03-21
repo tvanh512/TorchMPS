@@ -1,0 +1,94 @@
+Running experiment FASHION, with:
+  bond_dim=[10, 20, 40, 60, 80, 100]
+  num_epochs=60
+  fashion=1
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/c7f82b6f485c47928d0fa5ff1cd04592
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/c7f82b6f485c47928d0fa5ff1cd04592
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.1627)
+COMET INFO:         sys.gpu.0.free_memory: 16026304512
+COMET INFO:     sys.gpu.0.gpu_utilization: 35
+COMET INFO:        sys.gpu.0.total_memory: 17071734784
+COMET INFO:         sys.gpu.0.used_memory: 1045430272
+COMET INFO:                    test error: 0.11049999999999971
+COMET INFO:                training error: 0.061033333333331496
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 1
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/0ac8c25eb59149eda378cfe405e9067d
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/0ac8c25eb59149eda378cfe405e9067d
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0874)
+COMET INFO:         sys.gpu.0.free_memory: 15762063360
+COMET INFO:     sys.gpu.0.gpu_utilization: 63
+COMET INFO:        sys.gpu.0.total_memory: 17071734784
+COMET INFO:         sys.gpu.0.used_memory: 1309671424
+COMET INFO:                    test error: 0.10209999999999952
+COMET INFO:                training error: 0.0317999999999955
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 2
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/1f2fd5b1e6554837875f42df67f2da9a
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/1f2fd5b1e6554837875f42df67f2da9a
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0386)
+COMET INFO:         sys.gpu.0.free_memory: 14837219328
+COMET INFO:     sys.gpu.0.gpu_utilization: 82
+COMET INFO:        sys.gpu.0.total_memory: 17071734784
+COMET INFO:         sys.gpu.0.used_memory: 2234515456
+COMET INFO:                    test error: 0.10470000000000013
+COMET INFO:                training error: 0.012849999999994588
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 3
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/173c52044ab94bfb94af25a5e6cc3cc9
+
+Auks API request failed : auks api : reply processing failed
+Auks API request failed : auks api : reply processing failed
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/173c52044ab94bfb94af25a5e6cc3cc9
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0211)
+COMET INFO:         sys.gpu.0.free_memory: 13159497728
+COMET INFO:     sys.gpu.0.gpu_utilization: 97
+COMET INFO:        sys.gpu.0.total_memory: 17071734784
+COMET INFO:         sys.gpu.0.used_memory: 3912237056
+COMET INFO:                    test error: 0.10529999999999973
+COMET INFO:                training error: 0.006083333333329555
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 4
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/0f1862bab5d6439d8249400faf135b98
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/0f1862bab5d6439d8249400faf135b98
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0130)
+COMET INFO:         sys.gpu.0.free_memory: 10569515008
+COMET INFO:     sys.gpu.0.gpu_utilization: 99
+COMET INFO:        sys.gpu.0.total_memory: 17071734784
+COMET INFO:         sys.gpu.0.used_memory: 6502219776
+COMET INFO:                    test error: 0.10819999999999996
+COMET INFO:                training error: 0.003416666666664736
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 5
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/ac42852bc0784711ace370f3e18b68e3
+
+Auks API request failed : auks api : reply processing failed

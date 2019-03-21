@@ -1,0 +1,379 @@
+THIS TRIAL'S ALL PARAMETERS
+bond_dim = 100
+adaptive_mode = False
+periodic_bc = False
+init_std = 1e-09
+num_train = 60000
+num_test = 10000
+batch_size = 100
+num_epochs = 60
+learning_rate = 0.0001
+l2_reg = 0.0
+merge_threshold = 2000
+cutoff = 1e-10
+Using device: cuda:0
+Learning rate scheduler in use
+Training on MNIST
+
+path = [413, 278, 741, 189, 289, 126, 205, 410, 236, 669, 745, 618, 422, 266, 576, 502, 16, 283, 194, 563, 607, 446, 528, 458, 654, 596, 642, 234, 724, 432, 418, 335, 274, 207, 675, 625, 292, 695, 655, 373, 449, 767, 586, 670, 258, 66, 42, 5, 256, 464, 783, 635, 736, 239, 380, 91, 315, 6, 161, 255, 344, 550, 85, 302, 694, 771, 100, 647, 707, 305, 244, 200, 641, 195, 45, 294, 137, 547, 559, 272, 408, 390, 765, 243, 290, 762, 414, 610, 227, 150, 751, 48, 192, 621, 581, 142, 769, 573, 718, 729, 603, 269, 69, 466, 509, 362, 134, 747, 332, 569, 54, 632, 146, 506, 452, 56, 491, 552, 12, 298, 3, 371, 119, 441, 650, 495, 493, 268, 640, 689, 288, 81, 474, 567, 88, 357, 62, 73, 760, 426, 233, 770, 102, 230, 193, 201, 534, 756, 604, 554, 386, 470, 465, 481, 64, 181, 296, 429, 420, 598, 735, 634, 477, 196, 645, 520, 33, 701, 445, 186, 375, 215, 525, 746, 613, 411, 28, 25, 457, 90, 574, 658, 766, 726, 722, 198, 254, 578, 421, 35, 595, 132, 779, 489, 376, 706, 472, 651, 191, 369, 699, 649, 347, 744, 419, 781, 557, 26, 750, 354, 665, 9, 164, 310, 202, 180, 93, 529, 633, 320, 499, 455, 339, 590, 539, 437, 356, 250, 619, 639, 154, 725, 691, 232, 601, 313, 57, 82, 659, 617, 399, 389, 702, 384, 166, 92, 450, 443, 711, 222, 561, 86, 378, 308, 674, 160, 190, 127, 280, 549, 462, 13, 631, 319, 178, 61, 312, 467, 53, 687, 423, 159, 80, 346, 593, 406, 118, 433, 306, 370, 149, 405, 340, 600, 267, 692, 147, 407, 454, 572, 307, 553, 448, 71, 623, 301, 562, 478, 365, 599, 219, 316, 309, 17, 723, 536, 763, 264, 15, 295, 394, 473, 176, 594, 218, 55, 571, 58, 667, 585, 775, 544, 39, 396, 173, 622, 284, 262, 733, 143, 23, 753, 424, 492, 123, 349, 281, 144, 513, 732, 471, 584, 252, 155, 768, 507, 116, 247, 70, 323, 697, 630, 565, 174, 488, 130, 21, 87, 240, 341, 276, 700, 412, 570, 36, 223, 95, 187, 521, 372, 742, 246, 183, 229, 216, 67, 327, 657, 8, 696, 59, 776, 681, 260, 677, 548, 14, 242, 512, 379, 626, 52, 326, 666, 18, 206, 606, 519, 162, 299, 436, 672, 556, 780, 40, 403, 637, 170, 740, 168, 169, 68, 678, 566, 96, 398, 661, 124, 38, 480, 404, 727, 74, 614, 1, 500, 616, 10, 442, 22, 486, 212, 279, 103, 122, 774, 717, 531, 337, 107, 304, 546, 720, 185, 415, 710, 537, 716, 101, 44, 453, 110, 560, 32, 555, 400, 484, 321, 516, 505, 237, 712, 177, 646, 367, 605, 511, 456, 517, 113, 382, 494, 545, 580, 214, 497, 682, 714, 503, 431, 165, 434, 139, 451, 575, 538, 615, 351, 739, 366, 343, 759, 591, 392, 612, 757, 391, 755, 460, 117, 703, 348, 31, 690, 248, 676, 203, 588, 163, 277, 157, 479, 285, 265, 587, 652, 125, 715, 333, 514, 27, 353, 43, 355, 342, 11, 99, 221, 564, 30, 713, 188, 220, 438, 2, 684, 226, 350, 83, 668, 172, 377, 515, 217, 156, 245, 138, 208, 417, 224, 629, 49, 34, 627, 773, 360, 602, 98, 496, 270, 311, 524, 543, 582, 358, 381, 487, 24, 263, 204, 121, 120, 352, 286, 63, 686, 19, 228, 485, 322, 148, 673, 72, 251, 210, 329, 636, 685, 501, 688, 579, 469, 387, 317, 540, 105, 145, 527, 395, 518, 108, 459, 235, 259, 334, 41, 708, 653, 664, 140, 748, 734, 705, 589, 76, 114, 475, 638, 749, 184, 644, 620, 628, 743, 383, 719, 542, 764, 530, 662, 402, 761, 738, 133, 282, 533, 20, 79, 611, 568, 231, 430, 778, 721, 679, 468, 385, 50, 483, 89, 293, 523, 704, 368, 75, 199, 153, 425, 136, 318, 336, 393, 128, 197, 359, 253, 297, 77, 428, 238, 4, 698, 29, 47, 680, 683, 115, 106, 109, 84, 592, 111, 482, 225, 209, 345, 663, 597, 447, 643, 171, 291, 7, 624, 476, 671, 65, 324, 558, 504, 551, 271, 167, 490, 112, 78, 249, 374, 60, 325, 730, 522, 211, 104, 37, 508, 439, 241, 273, 754, 535, 463, 728, 151, 498, 782, 648, 409, 94, 213, 660, 541, 444, 179, 772, 656, 416, 141, 131, 257, 182, 440, 609, 777, 175, 314, 363, 331, 97, 526, 693, 261, 577, 135, 46, 300, 330, 275, 361, 427, 510, 608, 435, 532, 709, 397, 752, 758, 737, 158, 583, 303, 338, 152, 364, 388, 51, 328, 287, 0, 731, 461, 129, 401]
+
+### Epoch 1 ###
+Average loss for epoch: 0.5286
+Average train accuracy: 0.8198
+Test accuracy:          0.9196
+Runtime so far:         325 sec
+
+### Epoch 2 ###
+Average loss for epoch: 0.1669
+Average train accuracy: 0.9485
+Test accuracy:          0.9546
+Runtime so far:         641 sec
+
+### Epoch 3 ###
+Average loss for epoch: 0.1254
+Average train accuracy: 0.9624
+Test accuracy:          0.9596
+Runtime so far:         956 sec
+
+### Epoch 4 ###
+Average loss for epoch: 0.1039
+Average train accuracy: 0.9676
+Test accuracy:          0.9648
+Runtime so far:         1271 sec
+
+### Epoch 5 ###
+Average loss for epoch: 0.0902
+Average train accuracy: 0.9720
+Test accuracy:          0.9606
+Runtime so far:         1587 sec
+
+### Epoch 6 ###
+Average loss for epoch: 0.0811
+Average train accuracy: 0.9748
+Test accuracy:          0.9713
+Runtime so far:         1902 sec
+
+### Epoch 7 ###
+Average loss for epoch: 0.0671
+Average train accuracy: 0.9791
+Test accuracy:          0.9703
+Runtime so far:         2217 sec
+
+### Epoch 8 ###
+Average loss for epoch: 0.0670
+Average train accuracy: 0.9798
+Test accuracy:          0.9667
+Runtime so far:         2533 sec
+
+### Epoch 9 ###
+Average loss for epoch: 0.0598
+Average train accuracy: 0.9818
+Test accuracy:          0.9717
+Runtime so far:         2849 sec
+
+### Epoch 10 ###
+Average loss for epoch: 0.0515
+Average train accuracy: 0.9837
+Test accuracy:          0.9711
+Runtime so far:         3164 sec
+
+### Epoch 11 ###
+Average loss for epoch: 0.0488
+Average train accuracy: 0.9846
+Test accuracy:          0.9685
+Runtime so far:         3479 sec
+
+### Epoch 12 ###
+Average loss for epoch: 0.0443
+Average train accuracy: 0.9855
+Test accuracy:          0.9727
+Runtime so far:         3795 sec
+
+### Epoch 13 ###
+Average loss for epoch: 0.0401
+Average train accuracy: 0.9869
+Test accuracy:          0.9687
+Runtime so far:         4110 sec
+
+### Epoch 14 ###
+Average loss for epoch: 0.0397
+Average train accuracy: 0.9874
+Test accuracy:          0.9700
+Runtime so far:         4425 sec
+
+### Epoch 15 ###
+Average loss for epoch: 0.0369
+Average train accuracy: 0.9883
+Test accuracy:          0.9722
+Runtime so far:         4740 sec
+
+### Epoch 16 ###
+Average loss for epoch: 0.0342
+Average train accuracy: 0.9894
+Test accuracy:          0.9734
+Runtime so far:         5056 sec
+
+### Epoch 17 ###
+Average loss for epoch: 0.0350
+Average train accuracy: 0.9891
+Test accuracy:          0.9749
+Runtime so far:         5371 sec
+
+### Epoch 18 ###
+Average loss for epoch: 0.0294
+Average train accuracy: 0.9908
+Test accuracy:          0.9748
+Runtime so far:         5686 sec
+
+### Epoch 19 ###
+Average loss for epoch: 0.0300
+Average train accuracy: 0.9910
+Test accuracy:          0.9715
+Runtime so far:         6002 sec
+
+### Epoch 20 ###
+Average loss for epoch: 0.0283
+Average train accuracy: 0.9916
+Test accuracy:          0.9739
+Runtime so far:         6317 sec
+
+### Epoch 21 ###
+Average loss for epoch: 0.0071
+Average train accuracy: 0.9976
+Test accuracy:          0.9811
+Runtime so far:         6632 sec
+
+### Epoch 22 ###
+Average loss for epoch: 0.0022
+Average train accuracy: 0.9994
+Test accuracy:          0.9815
+Runtime so far:         6948 sec
+
+### Epoch 23 ###
+Average loss for epoch: 0.0010
+Average train accuracy: 0.9998
+Test accuracy:          0.9813
+Runtime so far:         7263 sec
+
+### Epoch 24 ###
+Average loss for epoch: 0.0005
+Average train accuracy: 0.9998
+Test accuracy:          0.9809
+Runtime so far:         7578 sec
+
+### Epoch 25 ###
+Average loss for epoch: 0.0006
+Average train accuracy: 0.9998
+Test accuracy:          0.9806
+Runtime so far:         7893 sec
+
+### Epoch 26 ###
+Average loss for epoch: 0.0008
+Average train accuracy: 0.9998
+Test accuracy:          0.9807
+Runtime so far:         8208 sec
+
+### Epoch 27 ###
+Average loss for epoch: 0.0007
+Average train accuracy: 0.9998
+Test accuracy:          0.9818
+Runtime so far:         8523 sec
+
+### Epoch 28 ###
+Average loss for epoch: 0.0006
+Average train accuracy: 0.9999
+Test accuracy:          0.9803
+Runtime so far:         8838 sec
+
+### Epoch 29 ###
+Average loss for epoch: 0.0004
+Average train accuracy: 0.9999
+Test accuracy:          0.9809
+Runtime so far:         9153 sec
+
+### Epoch 30 ###
+Average loss for epoch: 0.0011
+Average train accuracy: 0.9997
+Test accuracy:          0.9799
+Runtime so far:         9468 sec
+
+### Epoch 31 ###
+Average loss for epoch: 0.0001
+Average train accuracy: 1.0000
+Test accuracy:          0.9807
+Runtime so far:         9783 sec
+
+### Epoch 32 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9807
+Runtime so far:         10098 sec
+
+### Epoch 33 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         10413 sec
+
+### Epoch 34 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         10727 sec
+
+### Epoch 35 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         11042 sec
+
+### Epoch 36 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         11356 sec
+
+### Epoch 37 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         11670 sec
+
+### Epoch 38 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         11985 sec
+
+### Epoch 39 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         12299 sec
+
+### Epoch 40 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         12614 sec
+
+### Epoch 41 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         12928 sec
+
+### Epoch 42 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         13243 sec
+
+### Epoch 43 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         13557 sec
+
+### Epoch 44 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         13872 sec
+
+### Epoch 45 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         14186 sec
+
+### Epoch 46 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         14501 sec
+
+### Epoch 47 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9809
+Runtime so far:         14815 sec
+
+### Epoch 48 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         15130 sec
+
+### Epoch 49 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         15444 sec
+
+### Epoch 50 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         15758 sec
+
+### Epoch 51 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         16073 sec
+
+### Epoch 52 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         16387 sec
+
+### Epoch 53 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9810
+Runtime so far:         16702 sec
+
+### Epoch 54 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9811
+Runtime so far:         17017 sec
+
+### Epoch 55 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9811
+Runtime so far:         17331 sec
+
+### Epoch 56 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9813
+Runtime so far:         17645 sec
+
+### Epoch 57 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9813
+Runtime so far:         17960 sec
+
+### Epoch 58 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9814
+Runtime so far:         18274 sec
+
+### Epoch 59 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9814
+Runtime so far:         18588 sec
+
+### Epoch 60 ###
+Average loss for epoch: 0.0000
+Average train accuracy: 1.0000
+Test accuracy:          0.9813
+Runtime so far:         18903 sec
+

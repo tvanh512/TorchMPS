@@ -11,15 +11,15 @@ print()
 
 ### SPECIFY YOUR EXPERIMENT HERE ###
 
-# experiment_name will form part of our logfile name, so don't include any 
+# experiment_name will form part of our logfile name, so don't include any
 # special characters or (ideally) spaces
-experiment_name = 'adaptive'
+experiment_name = 'random'
 experiment_name = experiment_name.upper()
 
 # The parameters we want to search over
 num_trials = 6
 variables = {'bond_dim': [10, 20, 40, 60, 80, 100],
-             'adaptive_mode': 1}
+             'random_path': 1}
 
 ### FILE INFORMATION ###
 
@@ -38,14 +38,15 @@ defaults = {'lr': 1e-4,
             'num_train': 60000,
             'batch_size': 100,
             'bond_dim': 20,
-            'num_epochs': 30,
+            'num_epochs': 60,
             'num_test': 10000,
             'adaptive_mode': 0,
             'periodic_bc': 0,
             'merge_threshold': 2000,
             'cutoff': 1e-10,
             'use_gpu': 1,
-            'random_path': 0
+            'random_path': 0,
+            'fashion': 0
             }
 
 # The parameters fed to our script, along with shorthand versions
@@ -53,7 +54,7 @@ all_params = {'lr': 'lr', 'init_std': 'std', 'l2_reg': 'wd', 'num_train': 'nt',
               'batch_size': 'bs', 'bond_dim': 'bd', 'num_epochs': 'ne',
               'num_test': 'nte', 'adaptive_mode': 'dm', 'periodic_bc': 'bc',
               'merge_threshold': 'thr', 'cutoff': 'cut', 'use_gpu': 'gpu',
-              'random_path': 'path'}
+              'random_path': 'path', 'fashion': 'fm'}
 
 # Print some metadata about the experiment
 print(f'echo "Running experiment {experiment_name}, with:"')
@@ -88,13 +89,14 @@ while exp_count < num_trials:
         call_str += f"--{param} {these_params[param]} "
 
     # Build the name of where we're storing the runtime log for this experiment
-    log_name = experiment_name
+    log_suffix = ''
     for param in variables.keys():
-        log_name += f"_{all_params[param]}"
+        log_suffix += f"_{all_params[param]}"
         if param in ['lr', 'init_std', 'l2_reg']:
-            log_name += f"_{these_params[param]:.2e}"
+            log_suffix += f"_{these_params[param]:.2e}"
         else:
-            log_name += f"_{these_params[param]}"
+            log_suffix += f"_{these_params[param]}"
+    log_name = experiment_name + log_suffix
 
     # Make sure we're not overwriting another log file
     # base_name, suffix = log_name, 0
@@ -105,7 +107,7 @@ while exp_count < num_trials:
 
     # Make the actual system call, which happens using srun
     # call_str = f"{srun_call} {call_str} >> {log_name} &"
-    call_str = f"{srun_call} {call_str} >> {log_name}"
+    call_str = f"{srun_call} {call_str} --config {log_suffix} >> {log_name}"
 
     # Print our system call
     print(call_str)
