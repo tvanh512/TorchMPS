@@ -14,7 +14,7 @@ torchmps_dir = '/network/home/millerja/torchmps'
 sys.path.append(torchmps_dir)
 
 from torchmps import MPS
-from utils import joint_shuffle
+from utils import joint_shuffle, onehot
 
 # Get parameters for testing
 parser = argparse.ArgumentParser(description='Hyperparameter tuning')
@@ -51,6 +51,9 @@ parser.add_argument('--random_path', type=int, default=0, metavar='PATH',
                     help='Whether to set our MPS up along a random path')
 parser.add_argument('--fashion_mnist', type=int, default=0, metavar='FM',
                     help='Whether to use fashion MNIST in place of MNIST')
+parser.add_argument('--mse_loss', type=int, default=0, metavar='LOSS',
+                    help='Whether to use MSE loss (default cross entropy)')
+
 parser.add_argument('--config', type=str, default='', metavar='CONFIG',
                     help='The shorthand name for our parameter configuration')
 
@@ -73,6 +76,7 @@ batch_size = args.batch_size
 num_epochs = args.num_epochs
 lr = args.lr
 l2_reg = args.l2_reg
+mse_loss = args.mse_loss
 
 # GPU settings
 use_gpu = bool(args.use_gpu) and torch.cuda.is_available()
@@ -118,6 +122,8 @@ print("Using device:", device)
 print("Learning rate scheduler in use")
 print(f"Training on {'Fashion' if fashion else ''}MNIST")
 all_params['fashion'] = fashion
+print(f"Training with {'MSE' if mse_loss else 'cross entropy'} loss")
+all_params['mse_loss'] = mse_loss
 print()
 print("path =", path)
 all_params['path'] = path
@@ -137,7 +143,7 @@ mps = MPS(input_dim=input_dim, output_dim=output_dim, bond_dim=bond_dim,
 
 # Set loss function, optimizer, and scheduler (which decreases learning rate by
 # a factor of 10 every `step_size` epochs)
-loss_fun = torch.nn.CrossEntropyLoss()
+loss_fun = torch.nn.MSELoss() if mse_loss else torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(mps.parameters(), lr=lr, weight_decay=l2_reg)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=num_epochs//3)
 
@@ -165,17 +171,17 @@ test_inputs = torch.stack([data[0].view(input_dim) for data in test_set])
 train_labels = torch.stack([data[1] for data in train_set])
 test_labels = torch.stack([data[1] for data in test_set])
 
+# For MSELoss, convert labels to onehot vectors
+if mse_loss:
+    train_labels = onehot(train_labels, output_dim)
+    test_labels = onehot(test_labels, output_dim)
+
 # Get the desired number of input data
 train_inputs, train_labels = train_inputs[:num_train], train_labels[:num_train]
 test_inputs, test_labels = test_inputs[:num_test], test_labels[:num_test]
 
 num_batches = {name: total_num // batch_size for (name, total_num) in
                [('train', num_train), ('test', num_test)]}
-# samplers = {'train': torch.utils.data.SubsetRandomSampler(range(num_train)),
-#             'test': torch.utils.data.SubsetRandomSampler(range(num_test))}
-# loaders = {name: torch.utils.data.DataLoader(dataset, batch_size=batch_size,
-#            sampler=samplers[name], drop_last=True) for (name, dataset) in
-#            [('train', train_set), ('test', test_set)]}
 
 # Move everything to GPU (if we're using it)
 if use_gpu:
@@ -203,7 +209,8 @@ for epoch_num in range(1, num_epochs+1):
         # Compute the loss and accuracy, add them to the running totals
         this_loss = loss_fun(scores, labels)
         with torch.no_grad():
-            accuracy = torch.sum(preds == labels).item() / batch_size
+            class_labels = torch.max(labels, 1)[1] if mse_loss else labels
+            accuracy = torch.sum(preds == class_labels).item() / batch_size
             running_loss += this_loss
             train_acc += accuracy
 
@@ -217,7 +224,7 @@ for epoch_num in range(1, num_epochs+1):
 
     print(f"### Epoch {epoch_num} ###")
     print(f"Average loss for epoch: {running_loss:.4f}")
-    print(f"Average train accuracy: {train_acc:.4f}")
+    print(f"Average train error:    {1-train_acc:.4f}")
     experiment.log_metric('loss', running_loss, step=epoch_num)
     experiment.log_metric('training error', 1-train_acc, step=epoch_num)
     sys.stdout.flush()
@@ -235,11 +242,13 @@ for epoch_num in range(1, num_epochs+1):
 
             scores = mps(inputs)
             _, preds = torch.max(scores, 1)
-            test_acc += torch.sum(preds == labels).item() / batch_size
+            class_labels = torch.max(labels, 1)[1] if mse_loss else labels
+            test_acc += torch.sum(preds == class_labels).item() / batch_size
 
         test_acc /= num_batches['test']
 
-    print(f"Test accuracy:          {test_acc:.4f}")
+    print(f"Test error:             {1-test_acc:.4f}")
     print(f"Runtime so far:         {int(time.time()-start_time)} sec\n")
     experiment.log_metric('test error', 1-test_acc, step=epoch_num)
     sys.stdout.flush()
+

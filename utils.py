@@ -218,6 +218,17 @@ def init_tensor(shape, bond_str, init_method):
 
     return tensor
 
+def onehot(labels, max_value):
+    """
+    Convert a batch of labels from the set {0, 1,..., num_value-1} into their
+    onehot encoded counterparts
+    """
+    label_vecs = torch.zeros([len(labels), max_value])
+
+    for i, label in enumerate(labels):
+        label_vecs[i, label] = 1.
+
+    return label_vecs
 
 ### OLDER MISCELLANEOUS FUNCTIONS ###
 
@@ -273,18 +284,6 @@ def load_HV_data(length):
            torch.from_numpy(train_labels), \
            torch.from_numpy(test_images), \
            torch.from_numpy(test_labels)
-
-def onehot(labels, max_value):
-    """
-    Convert a batch of labels from the set {0, 1,..., num_value-1} into their
-    onehot encoded counterparts
-    """
-    label_vecs = torch.zeros([len(labels), max_value])
-
-    for i, label in enumerate(labels):
-        label_vecs[i, label] = 1.
-
-    return label_vecs
 
 def joint_shuffle(input_imgs, input_lbls):
     """

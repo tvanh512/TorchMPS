@@ -1,0 +1,344 @@
+THIS TRIAL'S ALL PARAMETERS
+bond_dim = 60
+adaptive_mode = False
+periodic_bc = False
+init_std = 1e-09
+num_train = 60000
+num_test = 10000
+batch_size = 100
+num_epochs = 60
+learning_rate = 0.0001
+l2_reg = 0.0
+merge_threshold = 2000
+cutoff = 1e-10
+Using device: cuda:0
+Learning rate scheduler in use
+Training on MNIST
+Training with MSE loss
+
+path = None
+
+### Epoch 1 ###
+Average loss for epoch: 0.1019
+Average train error:    0.8876
+Test error:             0.8152
+Runtime so far:         238 sec
+
+### Epoch 2 ###
+Average loss for epoch: 0.0379
+Average train error:    0.2364
+Test error:             0.0527
+Runtime so far:         406 sec
+
+### Epoch 3 ###
+Average loss for epoch: 0.0124
+Average train error:    0.0414
+Test error:             0.0307
+Runtime so far:         572 sec
+
+### Epoch 4 ###
+Average loss for epoch: 0.0092
+Average train error:    0.0278
+Test error:             0.0237
+Runtime so far:         738 sec
+
+### Epoch 5 ###
+Average loss for epoch: 0.0078
+Average train error:    0.0215
+Test error:             0.0202
+Runtime so far:         904 sec
+
+### Epoch 6 ###
+Average loss for epoch: 0.0069
+Average train error:    0.0176
+Test error:             0.0189
+Runtime so far:         1068 sec
+
+### Epoch 7 ###
+Average loss for epoch: 0.0062
+Average train error:    0.0158
+Test error:             0.0168
+Runtime so far:         1233 sec
+
+### Epoch 8 ###
+Average loss for epoch: 0.0057
+Average train error:    0.0139
+Test error:             0.0152
+Runtime so far:         1399 sec
+
+### Epoch 9 ###
+Average loss for epoch: 0.0053
+Average train error:    0.0125
+Test error:             0.0149
+Runtime so far:         1564 sec
+
+### Epoch 10 ###
+Average loss for epoch: 0.0049
+Average train error:    0.0103
+Test error:             0.0156
+Runtime so far:         1729 sec
+
+### Epoch 11 ###
+Average loss for epoch: 0.0046
+Average train error:    0.0093
+Test error:             0.0141
+Runtime so far:         1895 sec
+
+### Epoch 12 ###
+Average loss for epoch: 0.0044
+Average train error:    0.0081
+Test error:             0.0140
+Runtime so far:         2061 sec
+
+### Epoch 13 ###
+Average loss for epoch: 0.0042
+Average train error:    0.0073
+Test error:             0.0130
+Runtime so far:         2226 sec
+
+### Epoch 14 ###
+Average loss for epoch: 0.0039
+Average train error:    0.0067
+Test error:             0.0147
+Runtime so far:         2390 sec
+
+### Epoch 15 ###
+Average loss for epoch: 0.0037
+Average train error:    0.0059
+Test error:             0.0126
+Runtime so far:         2557 sec
+
+### Epoch 16 ###
+Average loss for epoch: 0.0035
+Average train error:    0.0054
+Test error:             0.0119
+Runtime so far:         2723 sec
+
+### Epoch 17 ###
+Average loss for epoch: 0.0034
+Average train error:    0.0045
+Test error:             0.0135
+Runtime so far:         2888 sec
+
+### Epoch 18 ###
+Average loss for epoch: 0.0032
+Average train error:    0.0038
+Test error:             0.0126
+Runtime so far:         3053 sec
+
+### Epoch 19 ###
+Average loss for epoch: 0.0031
+Average train error:    0.0035
+Test error:             0.0125
+Runtime so far:         3219 sec
+
+### Epoch 20 ###
+Average loss for epoch: 0.0029
+Average train error:    0.0032
+Test error:             0.0128
+Runtime so far:         3385 sec
+
+### Epoch 21 ###
+Average loss for epoch: 0.0018
+Average train error:    0.0021
+Test error:             0.0114
+Runtime so far:         3549 sec
+
+### Epoch 22 ###
+Average loss for epoch: 0.0015
+Average train error:    0.0017
+Test error:             0.0114
+Runtime so far:         3715 sec
+
+### Epoch 23 ###
+Average loss for epoch: 0.0014
+Average train error:    0.0015
+Test error:             0.0119
+Runtime so far:         3881 sec
+
+### Epoch 24 ###
+Average loss for epoch: 0.0014
+Average train error:    0.0014
+Test error:             0.0111
+Runtime so far:         4046 sec
+
+### Epoch 25 ###
+Average loss for epoch: 0.0013
+Average train error:    0.0013
+Test error:             0.0113
+Runtime so far:         4211 sec
+
+### Epoch 26 ###
+Average loss for epoch: 0.0013
+Average train error:    0.0012
+Test error:             0.0119
+Runtime so far:         4377 sec
+
+### Epoch 27 ###
+Average loss for epoch: 0.0013
+Average train error:    0.0011
+Test error:             0.0114
+Runtime so far:         4543 sec
+
+### Epoch 28 ###
+Average loss for epoch: 0.0012
+Average train error:    0.0010
+Test error:             0.0115
+Runtime so far:         4707 sec
+
+### Epoch 29 ###
+Average loss for epoch: 0.0012
+Average train error:    0.0009
+Test error:             0.0111
+Runtime so far:         4872 sec
+
+### Epoch 30 ###
+Average loss for epoch: 0.0011
+Average train error:    0.0009
+Test error:             0.0113
+Runtime so far:         5038 sec
+
+### Epoch 31 ###
+Average loss for epoch: 0.0011
+Average train error:    0.0008
+Test error:             0.0113
+Runtime so far:         5204 sec
+
+### Epoch 32 ###
+Average loss for epoch: 0.0011
+Average train error:    0.0007
+Test error:             0.0109
+Runtime so far:         5369 sec
+
+### Epoch 33 ###
+Average loss for epoch: 0.0010
+Average train error:    0.0007
+Test error:             0.0115
+Runtime so far:         5533 sec
+
+### Epoch 34 ###
+Average loss for epoch: 0.0010
+Average train error:    0.0006
+Test error:             0.0111
+Runtime so far:         5699 sec
+
+### Epoch 35 ###
+Average loss for epoch: 0.0010
+Average train error:    0.0006
+Test error:             0.0111
+Runtime so far:         5865 sec
+
+### Epoch 36 ###
+Average loss for epoch: 0.0010
+Average train error:    0.0005
+Test error:             0.0112
+Runtime so far:         6028 sec
+
+### Epoch 37 ###
+Average loss for epoch: 0.0009
+Average train error:    0.0004
+Test error:             0.0113
+Runtime so far:         6194 sec
+
+### Epoch 38 ###
+Average loss for epoch: 0.0009
+Average train error:    0.0004
+Test error:             0.0111
+Runtime so far:         6360 sec
+
+### Epoch 39 ###
+Average loss for epoch: 0.0009
+Average train error:    0.0004
+Test error:             0.0114
+Runtime so far:         6525 sec
+
+### Epoch 40 ###
+Average loss for epoch: 0.0009
+Average train error:    0.0004
+Test error:             0.0115
+Runtime so far:         6686 sec
+
+### Epoch 41 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0116
+Runtime so far:         6849 sec
+
+### Epoch 42 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0115
+Runtime so far:         7011 sec
+
+### Epoch 43 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0114
+Runtime so far:         7174 sec
+
+### Epoch 44 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0116
+Runtime so far:         7336 sec
+
+### Epoch 45 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0112
+Runtime so far:         7499 sec
+
+### Epoch 46 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0114
+Runtime so far:         7662 sec
+
+### Epoch 47 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0117
+Runtime so far:         7824 sec
+
+### Epoch 48 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0116
+Runtime so far:         7987 sec
+
+### Epoch 49 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0113
+Runtime so far:         8149 sec
+
+### Epoch 50 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0114
+Runtime so far:         8312 sec
+
+### Epoch 51 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0115
+Runtime so far:         8474 sec
+
+### Epoch 52 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0002
+Test error:             0.0113
+Runtime so far:         8637 sec
+
+### Epoch 53 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0113
+Runtime so far:         8800 sec
+
+### Epoch 54 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0115
+Runtime so far:         8962 sec
+

@@ -1,0 +1,125 @@
+Running experiment FASHION_RANDOM, with:
+  bond_dim=[10, 20, 40, 60, 80, 100]
+  fashion=1
+  random_path=1
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/7e6873c09c804454b4538fafe8c2f773
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/7e6873c09c804454b4538fafe8c2f773
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.1751)
+COMET INFO:         sys.gpu.0.free_memory: 24813109248
+COMET INFO:     sys.gpu.0.gpu_utilization: 63
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 854327296
+COMET INFO:                    test error: 0.11299999999999955
+COMET INFO:                training error: 0.06658333333333155
+COMET INFO:   Other:
+COMET INFO:     Name: bd_10_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 1
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/4bfed42a4d6248b7b7fc9e4e8004dcf2
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/4bfed42a4d6248b7b7fc9e4e8004dcf2
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0872)
+COMET INFO:         sys.gpu.0.free_memory: 24552538112
+COMET INFO:     sys.gpu.0.gpu_utilization: 91
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 1114898432
+COMET INFO:                    test error: 0.11349999999999949
+COMET INFO:                training error: 0.03244999999999432
+COMET INFO:   Other:
+COMET INFO:     Name: bd_20_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 2
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/6a92a30c847840bbb1d37adc9aafd07f
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/6a92a30c847840bbb1d37adc9aafd07f
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0266)
+COMET INFO:         sys.gpu.0.free_memory: 23625596928
+COMET INFO:     sys.gpu.0.gpu_utilization: 97
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 2041839616
+COMET INFO:                    test error: 0.11730000000000007
+COMET INFO:                training error: 0.008716666666661821
+COMET INFO:   Other:
+COMET INFO:     Name: bd_40_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 3
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/331edd43019444c18ae382b83ed603bb
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/331edd43019444c18ae382b83ed603bb
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0063)
+COMET INFO:         sys.gpu.0.free_memory: 22199795712
+COMET INFO:     sys.gpu.0.gpu_utilization: 99
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 3467640832
+COMET INFO:                    test error: 0.1156999999999998
+COMET INFO:                training error: 0.001749999999998808
+COMET INFO:   Other:
+COMET INFO:     Name: bd_60_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 4
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/da609acaab714c009f711f91e3b29626
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/da609acaab714c009f711f91e3b29626
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0036)
+COMET INFO:         sys.gpu.0.free_memory: 19955056640
+COMET INFO:     sys.gpu.0.gpu_utilization: 99
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 5712379904
+COMET INFO:                    test error: 0.11799999999999988
+COMET INFO:                training error: 0.000683333333332925
+COMET INFO:   Other:
+COMET INFO:     Name: bd_80_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 5
+COMET INFO: old comet version (1.0.49) detected. current: 1.0.50 please update your comet lib with command: `pip install --no-cache-dir --upgrade comet_ml`
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/jemisjoky/torch-mps/1740e43a7d1241869b95bf4702f5ca73
+
+COMET INFO: ----------------------------
+COMET INFO: Comet.ml Experiment Summary:
+COMET INFO:   Data:
+COMET INFO:     url: https://www.comet.ml/jemisjoky/torch-mps/1740e43a7d1241869b95bf4702f5ca73
+COMET INFO:   Metrics:
+COMET INFO:                          loss: tensor(0.0012)
+COMET INFO:         sys.gpu.0.free_memory: 17102012416
+COMET INFO:     sys.gpu.0.gpu_utilization: 100
+COMET INFO:        sys.gpu.0.total_memory: 25667436544
+COMET INFO:         sys.gpu.0.used_memory: 8565424128
+COMET INFO:                    test error: 0.12009999999999976
+COMET INFO:                training error: 0.0003499999999996284
+COMET INFO:   Other:
+COMET INFO:     Name: bd_100_fm_1_path_1
+COMET INFO: ----------------------------
+COMET INFO: Uploading stats to Comet before program termination (may take several seconds)
+Done with experiment 6
+Done with all experiments

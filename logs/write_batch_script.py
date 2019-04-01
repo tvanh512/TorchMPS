@@ -13,13 +13,14 @@ print()
 
 # experiment_name will form part of our logfile name, so don't include any
 # special characters or (ideally) spaces
-experiment_name = 'random'
+experiment_name = 'fashion_mseloss'
 experiment_name = experiment_name.upper()
 
 # The parameters we want to search over
 num_trials = 6
 variables = {'bond_dim': [10, 20, 40, 60, 80, 100],
-             'random_path': 1}
+             'mse_loss': 1,
+             'fashion': 1}
 
 ### FILE INFORMATION ###
 
@@ -46,7 +47,8 @@ defaults = {'lr': 1e-4,
             'cutoff': 1e-10,
             'use_gpu': 1,
             'random_path': 0,
-            'fashion': 0
+            'fashion': 0,
+            'mse_loss': 0
             }
 
 # The parameters fed to our script, along with shorthand versions
@@ -54,7 +56,7 @@ all_params = {'lr': 'lr', 'init_std': 'std', 'l2_reg': 'wd', 'num_train': 'nt',
               'batch_size': 'bs', 'bond_dim': 'bd', 'num_epochs': 'ne',
               'num_test': 'nte', 'adaptive_mode': 'dm', 'periodic_bc': 'bc',
               'merge_threshold': 'thr', 'cutoff': 'cut', 'use_gpu': 'gpu',
-              'random_path': 'path', 'fashion': 'fm'}
+              'random_path': 'path', 'fashion': 'fm', 'mse_loss': 'mse'}
 
 # Print some metadata about the experiment
 print(f'echo "Running experiment {experiment_name}, with:"')

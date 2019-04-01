@@ -1,0 +1,80 @@
+THIS TRIAL'S ALL PARAMETERS
+bond_dim = 10
+adaptive_mode = False
+periodic_bc = False
+init_std = 1e-09
+num_train = 60000
+num_test = 10000
+batch_size = 100
+num_epochs = 60
+learning_rate = 0.0001
+l2_reg = 0.0
+merge_threshold = 2000
+cutoff = 1e-10
+Using device: cuda:0
+Learning rate scheduler in use
+Training on FashionMNIST
+Training with MSE loss
+
+path = None
+
+### Epoch 1 ###
+Average loss for epoch: 0.0923
+Average train error:    0.8392
+Test error:             0.5397
+Runtime so far:         34 sec
+
+### Epoch 2 ###
+Average loss for epoch: 0.0495
+Average train error:    0.3580
+Test error:             0.2581
+Runtime so far:         59 sec
+
+### Epoch 3 ###
+Average loss for epoch: 0.0354
+Average train error:    0.2338
+Test error:             0.2285
+Runtime so far:         83 sec
+
+### Epoch 4 ###
+Average loss for epoch: 0.0315
+Average train error:    0.1952
+Test error:             0.1896
+Runtime so far:         108 sec
+
+### Epoch 5 ###
+Average loss for epoch: 0.0283
+Average train error:    0.1694
+Test error:             0.1780
+Runtime so far:         133 sec
+
+### Epoch 6 ###
+Average loss for epoch: 0.0266
+Average train error:    0.1601
+Test error:             0.1719
+Runtime so far:         157 sec
+
+### Epoch 7 ###
+Average loss for epoch: 0.0255
+Average train error:    0.1534
+Test error:             0.1722
+Runtime so far:         182 sec
+
+### Epoch 8 ###
+Average loss for epoch: 0.0248
+Average train error:    0.1486
+Test error:             0.1622
+Runtime so far:         206 sec
+
+### Epoch 9 ###
+Average loss for epoch: 0.0242
+Average train error:    0.1456
+Test error:             0.1586
+Runtime so far:         231 sec
+
+### Epoch 10 ###
+Average loss for epoch: 0.0237
+Average train error:    0.1411
+Test error:             0.1551
+Runtime so far:         255 sec
+
