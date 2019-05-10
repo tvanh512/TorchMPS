@@ -342,3 +342,39 @@ Average train error:    0.0003
 Test error:             0.0115
 Runtime so far:         8962 sec
 
+### Epoch 55 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0112
+Runtime so far:         9124 sec
+
+### Epoch 56 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0114
+Runtime so far:         9287 sec
+
+### Epoch 57 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0112
+Runtime so far:         9449 sec
+
+### Epoch 58 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0002
+Test error:             0.0112
+Runtime so far:         9612 sec
+
+### Epoch 59 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0112
+Runtime so far:         9775 sec
+
+### Epoch 60 ###
+Average loss for epoch: 0.0007
+Average train error:    0.0003
+Test error:             0.0112
+Runtime so far:         9938 sec
+

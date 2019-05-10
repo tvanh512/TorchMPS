@@ -13,14 +13,14 @@ print()
 
 # experiment_name will form part of our logfile name, so don't include any
 # special characters or (ideally) spaces
-experiment_name = 'fashion_mseloss'
+experiment_name = 'naive_path'
 experiment_name = experiment_name.upper()
 
 # The parameters we want to search over
 num_trials = 6
 variables = {'bond_dim': [10, 20, 40, 60, 80, 100],
-             'mse_loss': 1,
-             'fashion': 1}
+             'init_std': 1.0,
+             'random_path': 1}
 
 ### FILE INFORMATION ###
 
