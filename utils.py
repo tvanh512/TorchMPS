@@ -167,7 +167,7 @@ def init_tensor(shape, bond_str, init_method):
                      Allowed options are:
                         * ('random_eye', std): Initialize each tensor input 
                             slice close to the identity
-                        * ('full_random', std): Initialize each tensor input 
+                        * ('random_zero', std): Initialize each tensor input 
                             slice close to the zero matrix
                         * ('min_random_eye', std, init_dim): Initialize each 
                             tensor input slice close to a truncated identity 
@@ -189,7 +189,7 @@ def init_tensor(shape, bond_str, init_method):
     assert len(shape) == len(bond_str)
     assert len(set(bond_str)) == len(bond_str)
 
-    if init_method not in ['random_eye', 'min_random_eye', 'full_random']:
+    if init_method not in ['random_eye', 'min_random_eye', 'random_zero']:
         raise ValueError(f"Unknown initialization method: {init_method}")
 
     if init_method in ['random_eye', 'min_random_eye']:
@@ -224,7 +224,7 @@ def init_tensor(shape, bond_str, init_method):
         # Add on a bit of random noise
         tensor += std * torch.randn(shape)
 
-    elif init_method == 'full_random':
+    elif init_method == 'random_zero':
         tensor = std * torch.randn(shape)
 
     return tensor

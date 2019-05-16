@@ -1,12 +1,10 @@
 """
 TODO:
 
-    (1) Modify the basic input classes to move towards a ResNet-style representation, where an identity matrix is automatically added and only the non-identity tensor component is saved in memory
-
-    (2) Allow FixedOutput to deal with case of output_dim > bond_dim, through some type of isometric layout of the classification vectors
+    (1) Allow FixedOutput to deal with case of output_dim > bond_dim, through some type of isometric layout of the classification vectors
     [NOTE: Perhaps an "isometric tight frame" is the right construction, whose explicit construction is given in https://www.semanticscholar.org/paper/ISOMETRIC-TIGHT-FRAMES-Reams-Waldron/9199c3eb5bfe93b19d17d92c0a9f2cacbe02a9ad]
 
-    (3) Revisit my earlier idea for refactoring my code to get rid of a bunch of nuisance classes.
+    (2) Revisit my earlier idea for refactoring my code to get rid of a bunch of nuisance classes.
 """
 import torch
 import torch.nn as nn
@@ -26,7 +24,7 @@ class TI_MPS(nn.Module):
         # This tensor holds all of the trainable parameters of our model
         tensor = init_tensor(bond_str='lri', 
                              shape=[bond_dim, bond_dim, feature_dim], 
-                             init_method=('full_random', init_std))
+                             init_method=('random_zero', init_std))
         self.core_tensor = nn.Parameter(tensor)
 
         # Define our initial vector and terminal matrix, which are both 
@@ -128,8 +126,9 @@ class MPS(nn.Module):
             tensor = init_tensor(bond_str='slri',
             shape=[label_site, bond_dim, bond_dim, feature_dim],
             init_method=('min_random_eye' if adaptive_mode else
-            'random_eye', init_std, output_dim))
-            module_list.append(InputRegion(tensor))
+            'random_zero', init_std, output_dim))
+            module_list.append(InputRegion(tensor, 
+                                           resnet_style=(not adaptive_mode)))
 
         # The output site
         tensor = init_tensor(shape=[output_dim, bond_dim, bond_dim],
@@ -142,8 +141,9 @@ class MPS(nn.Module):
             tensor = init_tensor(bond_str='slri',
                 shape=[input_dim-label_site, bond_dim, bond_dim, feature_dim],
                 init_method=('min_random_eye' if adaptive_mode else
-                             'random_eye', init_std, output_dim))
-            module_list.append(InputRegion(tensor))
+                             'random_zero', init_std, output_dim))
+            module_list.append(InputRegion(tensor, 
+                                           resnet_style=(not adaptive_mode)))
 
         # Initialize linear_region according to our adaptive_mode specification
         if adaptive_mode:
@@ -684,10 +684,14 @@ class InputRegion(nn.Module):
     """
     Contiguous region of MPS cores taking in multiple input data, bond_str = 'slri'
     """
-    def __init__(self, tensor):
+    def __init__(self, tensor, resnet_style=True):
         super().__init__()
+        # Make sure the component matrices are square
+        assert tensor.size(1) == tensor.size(2)
+
         # Register our tensor as a Pytorch Parameter
         self.tensor = nn.Parameter(tensor.contiguous())
+        self.resnet_style = resnet_style
 
     def forward(self, input_data):
         """
@@ -705,6 +709,12 @@ class InputRegion(nn.Module):
 
         # Contract the input with our core tensor
         mats = torch.einsum('slri,bsi->bslr', [tensor, input_data])
+
+        # Add an extra identity everywhere for ResNet-style representation
+        if self.resnet_style:
+            bond_dim = tensor.size(1)
+            eye_tensor = torch.eye(bond_dim).view([1, 1, bond_dim, bond_dim])
+            mats = mats + eye_tensor.expand_as(mats)
 
         return MatRegion(mats)
 
