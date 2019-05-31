@@ -1,10 +1,10 @@
 """
 TODO:
 
-    (1) Allow FixedOutput to deal with case of output_dim > bond_dim, through some type of isometric layout of the classification vectors
+    (1) Allow TerminalMat to deal with case of output_dim > bond_dim, through some type of isometric layout of the classification vectors
     [NOTE: Perhaps an "isometric tight frame" is the right construction, whose explicit construction is given in https://www.semanticscholar.org/paper/ISOMETRIC-TIGHT-FRAMES-Reams-Waldron/9199c3eb5bfe93b19d17d92c0a9f2cacbe02a9ad]
 
-    (2) Revisit my earlier idea for refactoring my code to get rid of a bunch of nuisance classes.
+    (2) Revisit my earlier idea for refactoring my code to simplify a bunch of nuisance classes.
 """
 import torch
 import torch.nn as nn
@@ -17,7 +17,7 @@ class TI_MPS(nn.Module):
     Sequence MPS which converts input of arbitrary length to a single output vector
     """
     def __init__(self, feature_dim, output_dim, bond_dim, parallel_eval=False,
-                 init_std=1e-9):
+                 fixed_ends=True, init_std=1e-9):
         super().__init__()
 
         # Initialize the core tensor defining our model near the identity
@@ -26,12 +26,14 @@ class TI_MPS(nn.Module):
                              shape=[bond_dim, bond_dim, feature_dim], 
                              init_method=('random_zero', init_std))
 
-        self.core_tensor = nn.Parameter(tensor)
+        self.register_parameter(name='core_tensor', param=nn.Parameter(tensor))
 
         # Define our initial vector and terminal matrix, which are both 
         # functional modules, i.e. unchanged during training
-        self.init_vector = FixedVector(bond_dim)
-        self.terminal_mat = FixedOutput(bond_dim, output_dim)
+        assert isinstance(fixed_ends, bool)
+        self.init_vector = InitialVector(bond_dim, fixed_vec=fixed_ends)
+        self.terminal_mat = TerminalOutput(bond_dim, output_dim, 
+                                           fixed_mat=fixed_ends)
 
         self.feature_dim = feature_dim
         self.output_dim = output_dim
@@ -695,7 +697,8 @@ class InputRegion(nn.Module):
         if ephemeral:
             self.register_buffer(name='tensor', tensor=tensor.contiguous())
         else:
-            self.register_parameter(name='tensor', tensor=tensor.contiguous())
+            self.register_parameter(name='tensor', 
+                                    param=nn.Parameter(tensor.contiguous()))
         
         self.resnet_style = resnet_style
 
@@ -817,7 +820,8 @@ class MergedInput(nn.Module):
         super().__init__()
 
         # Register our tensor as a Pytorch Parameter
-        self.tensor = nn.Parameter(tensor.contiguous())
+        self.register_parameter(name='tensor', 
+                                param=nn.Parameter(tensor.contiguous()))
 
     def forward(self, input_data):
         """
@@ -907,7 +911,8 @@ class InputSite(nn.Module):
     def __init__(self, tensor):
         super().__init__()
         # Register our tensor as a Pytorch Parameter
-        self.tensor = nn.Parameter(tensor.contiguous())
+        self.register_parameter(name='tensor', 
+                                param=nn.Parameter(tensor.contiguous()))
 
     def forward(self, input_data):
         """
@@ -956,7 +961,8 @@ class OutputSite(nn.Module):
     def __init__(self, tensor):
         super().__init__()
         # Register our tensor as a Pytorch Parameter
-        self.tensor = nn.Parameter(tensor.contiguous())
+        self.register_parameter(name='tensor', 
+                                param=nn.Parameter(tensor.contiguous()))
 
     def forward(self, input_data):
         """
@@ -1006,7 +1012,8 @@ class MergedOutput(nn.Module):
         super().__init__()
 
         # Register our tensor as a Pytorch Parameter
-        self.tensor = nn.Parameter(tensor.contiguous())
+        self.register_parameter(name='tensor', 
+                                param=nn.Parameter(tensor.contiguous()))
         self.left_output = left_output
 
     def forward(self, input_data):
@@ -1080,22 +1087,39 @@ class MergedOutput(nn.Module):
     def __len__(self):
         return 1
 
-class FixedVector(nn.Module):
+class InitialVector(nn.Module):
     """
-    Fixed all-ones vector to act as beginning or end of MPS
+    Vector of ones and zeros to act as initial vector within the MPS
+
+    By default the initial vector is chosen to be all ones, but if fill_dim is
+    specified then only the first fill_dim entries are set to one, with the
+    rest zero.
+
+    If fixed_vec is False, then the initial vector will be registered as a 
+    trainable model parameter.
     """
-    def __init__(self, bond_dim, is_left_vec=True):
+    def __init__(self, bond_dim, fill_dim=None, fixed_vec=True, 
+                 is_left_vec=True):
         super().__init__()
 
         vec = torch.ones(bond_dim)
-        vec.requires_grad = False
-        self.register_buffer(name='vec', tensor=vec)
+        if fill_dim is not None:
+            assert fill_dim >= 0 and fill_dim <= bond_dim
+            vec[fill_dim:] = 0
 
+        if fixed_vec:
+            vec.requires_grad = False
+            self.register_buffer(name='vec', tensor=vec)
+        else:
+            vec.requires_grad = True
+            self.register_parameter(name='vec', param=nn.Parameter(vec))
+        
+        assert isinstance(is_left_vec, bool)
         self.is_left_vec = is_left_vec
 
     def forward(self):
         """
-        Return our fixed vector wrapped as an EdgeVec contractable
+        Return our initial vector wrapped as an EdgeVec contractable
         """
         return EdgeVec(self.vec, self.is_left_vec)
 
@@ -1105,27 +1129,37 @@ class FixedVector(nn.Module):
     def __len__(self):
         return 0
 
-class FixedOutput(nn.Module):
+class TerminalOutput(nn.Module):
     """
-    Fixed output matrix to transmute virtual state of MPS into output vector
+    Output matrix at end of chain to transmute virtual state into output vector
+
+    By default, a fixed rectangular identity matrix with shape 
+    [bond_dim, output_dim] will be used as a state transducer. If fixed_mat is
+    False, then the matrix will be registered as a trainable model parameter. 
     """
-    def __init__(self, bond_dim, output_dim, is_left_mat=False):
+    def __init__(self, bond_dim, output_dim, fixed_mat=True,
+                 is_left_mat=False):
         super().__init__()
 
         if output_dim > bond_dim:
-            raise ValueError("FixedOutput core currently only supports case of"
-                             "bond_dim >= output_dim, but here bond_dim="
+            raise ValueError("TerminalOutput core currently only supports case"
+                             " of bond_dim >= output_dim, but here bond_dim="
                             f"{bond_dim} and output_dim={output_dim}")
-
         mat = torch.eye(bond_dim, output_dim)
-        mat.requires_grad = False
-        self.register_buffer(name='mat', tensor=mat)
 
+        if fixed_mat:
+            mat.requires_grad = False
+            self.register_buffer(name='mat', tensor=mat)
+        else:
+            mat.requires_grad = True
+            self.register_parameter(name='mat', param=nn.Parameter(mat))
+
+        assert isinstance(is_left_mat, bool)
         self.is_left_mat = is_left_mat
 
     def forward(self):
         """
-        Return our fixed matrix wrapped as an OutputMat contractable
+        Return our terminal matrix wrapped as an OutputMat contractable
         """
         return OutputMat(self.mat, self.is_left_mat)
 
